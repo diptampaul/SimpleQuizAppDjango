@@ -1,0 +1,73 @@
+{% load static %}
+{% static "images" as baseImgUrl %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID Data Fetch</title>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="box box-1">
+            <div class="heading">
+                <h2>Exam System VGU</h2>
+                <p></p>
+            </div>
+            <button class="talk">
+                Start
+            </button>
+            <button class="group">
+                Group
+            </button>
+            <div class="logo">
+                <br><br><br><br>
+                <img src="https://dulterior.com/wp-content/uploads/2020/11/v1.png" alt="Logo" style="width: 80%; height:auto">
+            </div>
+            <div class="quiz" style="margin-top: 50px;">
+                
+                    {% csrf_token %}
+                    {% for question in questions %}
+
+                    <h3>Q-{{question.id}} {{question.question}} ?</h3>
+                    <input type="radio" class="option-{{question.id}}" name="{{question.id}}" value="{{question.option1}}"> <label for="{{question.option1}}">{{question.option1}}</label> <br>
+                    <input type="radio" class="option-{{question.id}}" name="{{question.id}}" value="{{question.option2}}">  <label for="{{question.option2}}">{{question.option2}}</label> <br>
+                    <input type="radio" class="option-{{question.id}}" name="{{question.id}}" value="{{question.option3}}">  <label for="{{question.option3}}">{{question.option3}}</label> <br>
+                    <input type="radio" class="option-{{question.id}}" name="{{question.id}}" value="{{question.option4}}">  <label for="{{question.option4}}">{{question.option4}}</label> <br>
+
+                    <h4 class="answer answer-color" style="color: green; display:none;">Correct Answer: <a href="{{question.prove}}" target="_blank" class="correct-ans" rel="noopener noreferrer" style="text-decoration: none; color: green;" name="{{question.id}}">{{question.correct}} </a><span style="font-size: 8px;"> Click to check facts</span></h4>
+                    <hr><br>
+                    {% endfor %}
+                    <input type="submit" name="submit" class="submit" style="width: 110px;">
+                    <br>
+                    <h4 class="show_selected"></h4>
+            </div>
+        </div>
+
+        <div class="box box-2">
+            <div class="heading">
+                <h2>Exam System VGU</h2>
+                <p></p>
+            </div>
+            <button class="talk">
+                Start
+            </button>
+            <button class="group-close" style="margin-bottom: 100px;">
+                Close
+            </button>
+
+            
+            <h3 class="gp-contents"><strong>Diptam Paul -</strong> Coding</h3>
+            <h3 class="gp-contents"><strong>Md. Shoyel -</strong> PPT</h3>
+            <h3 class="gp-contents"><strong>Prachi Kumawat B -</strong> SRS</h3>
+            <h3 class="gp-contents"><strong>Ajay Jangir -</strong> Diagrams</h3>
+        </div>
+    </div>
+
+
+    <script src="{% static 'app.js'%}"></script>
+</body>
+</html>
