@@ -1,0 +1,1 @@
+web: gunicorn diptam.wsgi --log-file -
